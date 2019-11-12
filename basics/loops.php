@@ -3,8 +3,8 @@ $contador = 1;
 
 echo ">>>> WHILE <<<<" . PHP_EOL;
 while ($contador <= 5) {
-        echo "#$contador" . PHP_EOL;
-        $contador ++;
+    echo "#$contador" . PHP_EOL;
+    $contador ++;
 }
  
 echo PHP_EOL . ">>>> FOR <<<<" . PHP_EOL;

@@ -1,4 +1,11 @@
 <?php
+/*
+readline — Lê uma linha
+    Retorna uma simples string
+
+gettype — Obtém o tipo da variável
+*/
+
 $idade = readline("Idade: ");
 
 echo gettype($idade) . PHP_EOL;

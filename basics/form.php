@@ -21,12 +21,15 @@
     <hr>
 
     <?php
-    $nome = $_POST["nome"];
-    $carro = $_POST["carro"];
+    /*
+        isset — Informa se a variável foi iniciada
+        Retorna TRUE se var existe; FALSE caso contrário.
+    */
+    $nome = isset($_POST["nome"]) ? $_POST["nome"] : "NOME Ñ DEFINIDO";
+    $carro = isset($_POST["carro"]) ? $_POST["carro"] : "CARRO Ñ DEFINIDO";
 
-
-
-    if ($nome) echo "Olá $nome! você escolheu um $carro";
+    echo "Olá $nome! você escolheu um $carro";
+    
     ?>
 
 
