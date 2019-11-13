@@ -5,6 +5,9 @@ readline — Lê uma linha
 
 random_int — Retorna um número inteiro aleatório no intervalo de min e max.
     random_int(min, max);
+
+operador ternário
+    (expressão) ? valueTrue : valueFalse ;
 */
 
 $idade = readline("Idade: ");
@@ -43,6 +46,12 @@ switch ($idade) {
     default:
         echo "E ai meu irmão!?";
 }
+echo PHP_EOL;
+
+
+// >>>> IF TERNÁRIO<<<<
+$situacao = ( $idade >=18 )? "você já é maior de idade" : "você precisa de um responsável";
+echo $situacao;
 
 echo PHP_EOL;
 
