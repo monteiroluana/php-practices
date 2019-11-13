@@ -30,6 +30,11 @@ for($i=0; $i<15; $i++){
 
 
 echo PHP_EOL;
+for ($i= 100; $i >= 0; $i -= 5) {
+    echo "$i - ";
+}
+
+echo PHP_EOL;
 ?>
 
 

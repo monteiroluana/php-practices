@@ -11,6 +11,7 @@
         Nome: <input type=text name=nome><br>
         Carro:
         <select name=carro>
+            <option value="">Selecione</option>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
         </select>
