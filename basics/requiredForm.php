@@ -9,6 +9,8 @@
     $_SERVER — is an array containing information such as headers, paths, and script locations.
 
     REQUEST_METHOD — An associative array that by default contains the contents of $_GET, $_POST and $_COOKIE.
+
+    empty — Determine whether a variable is considered to be empty. A variable is considered empty if it does not exist or if its value equals FALSE
 */
 
 $nameErr = $name = "";
