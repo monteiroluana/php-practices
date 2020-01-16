@@ -78,7 +78,7 @@ function addData($name, $img, $album)
                                         <div class="form-group col-md-12">
                                             <label for="inputImrSrc">Image address</label>
                                             <input type="text" class="form-control" name="inputImrSrc" placeholder="Image address link">
-                                            google                 </div>
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Adicionar</button>
                                 </form>

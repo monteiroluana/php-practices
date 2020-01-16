@@ -36,4 +36,11 @@ $inteiro = (int) $var;
 $text = (string) $inteiro;
 echo gettype($var) . " <-> " . gettype($inteiro) . " <-> " . gettype($text). PHP_EOL;
 
+
+// Array
+$arr=[];
+if(is_null($arr)) echo "vazio";
+else echo $arr[0];
+
+
 ?>
