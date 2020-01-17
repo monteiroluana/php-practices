@@ -2,21 +2,13 @@
 
 require_once 'class/Disco.php';
 
-$dados = [
-    new Disco('I Put a Spell on You','Nina Simone', 'https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/2/6/a/8/26a84994724b28b4a042a3a7601d134a.jpg'),
-    new Disco('The Miseducation of Lauryn Hill','Lauryn Hill','https://f.i.uol.com.br/fotografia/2019/05/02/15568487735ccba08548d28_1556848773_3x2_md.jpg'),
-    new Disco('Homecoming','Beyoncé','https://i.pinimg.com/originals/44/f8/72/44f8721b4bf433a0ce16b02d9c131e9c.jpg'),
-    new Disco('The London Session','Mary J. Blige','http://www.soulbounce.com/wp-content/uploads/2014/09/Mary-J-Blige-Black-White-Wearing-Hat.jpg'),
-    new Disco('Lost & Found','Ledsi','http://www.soulwalking.co.uk/00Images%202014-1/LEDISI-Nice15.jpg'),
-];
+$disco = new Disco();
+$lista = $disco->listar();
 
-function addData($name, $img, $album)
-{
-    global $dados;
+// echo "<pre>";
+// print_r($lista);
+// echo "</pre>";
 
-    $newDisco = new Disco($album, $name, $img);
-    array_push($dados, $newDisco);
-}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +18,7 @@ function addData($name, $img, $album)
     <meta charset="utf-8">
     <title>Home</title>
     <!-- local -->
-	<!-- <link rel="stylesheet" href="css/home.css"> -->
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
 </head>
 
 <body>
@@ -38,7 +30,7 @@ function addData($name, $img, $album)
             $name = $_POST["inputName"];
             $img = $_POST["inputImrSrc"];
             $album = $_POST['inputAlbum'];
-            addData($name,  $img, $album);
+            // addData($name,  $img, $album);
         }
     }
     ?>
@@ -88,22 +80,18 @@ function addData($name, $img, $album)
                 </div>
                 <!-- End Modal -->
 
-
-
                 <div class="row">
-                    <?php
-                    foreach ($dados as $disco) {
-                        echo '<div class="col-md-4">';
-                        echo '  <div class="card mb-4 " style="width: 18rem;">';
-                        echo '      <img src="' . $disco->img . '" class="card-img-top" alt="..." height="200">';
-                        echo '      <div class="card-body">';
-                        echo '          <p align="justify" style="font-size: small"> <strong> ' . $disco->artista . ' </strong> <br>';
-                        echo '            Álbum: ' . $disco->nome . '<br>';
-                        echo '      </div>';
-                        echo '  </div>';
-                        echo '</div>' . PHP_EOL;
-                    }
-                    ?>
+                    <?php foreach ($lista as $disco) : ?>
+                        <div class="col-md-4">
+                            <div class="card mb-4 " style="width: 18rem;">
+                                <img src="<?php echo $disco['img']?>" class="card-img-top" alt="..." height="200">
+                                <div class="card-body">
+                                    <p align="justify" style="font-size: small"> <strong><?php echo $disco['artista']?></strong> <br>
+                                        Álbum: <?php echo $disco['album']?><br>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
 
                 </div>
                 <!--end row-->

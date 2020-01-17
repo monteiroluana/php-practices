@@ -1,19 +1,13 @@
 <?php
 class Disco
 {
-    // atributos
-    public $nome;
-    public $artista;
-    public $img;
-
-    // método construtor
-    public function __construct($nome, $artista, $img){
-        $this->nome = $nome;
-        $this->artista = $artista;
-        $this->img = $img;
+    public function listar(){
+        $sql = "select id, album, artista, img from catalogo.disco";
+        $conn = new PDO('pgsql:host=localhost;port=5432;dbname=persiann;user=persiann;password=persiann');
+        $resultado = $conn->query($sql);
+        $lista = $resultado->fetchAll();
+        return $lista;
     }
-
-    // métodos
 }
 
 
