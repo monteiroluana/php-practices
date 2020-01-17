@@ -27,11 +27,13 @@ $lista = $disco->listar();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST["inputName"]) && !empty($_POST["inputImrSrc"])) {
-            $name = $_POST["inputName"];
-            $img = $_POST["inputImrSrc"];
-            $album = $_POST['inputAlbum'];
-            // addData($name,  $img, $album);
+            $newDisco = new Disco();
+            $newDisco->artista = $_POST["inputName"];
+            $newDisco->img = $_POST["inputImrSrc"];
+            $newDisco->album = $_POST['inputAlbum'];
+            $newDisco->inserir();
         }
+        header('Location:index.php');
     }
     ?>
     <div class="home">
