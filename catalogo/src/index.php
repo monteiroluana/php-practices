@@ -3,7 +3,7 @@
 require_once 'class/Disco.php';
 
 $disco = new Disco();
-$lista = $disco->listar();
+$lista = $disco->selectAll();
 
 // echo "<pre>";
 // print_r($lista);
@@ -31,7 +31,8 @@ $lista = $disco->listar();
             $newDisco->artista = $_POST["inputName"];
             $newDisco->img = $_POST["inputImrSrc"];
             $newDisco->album = $_POST['inputAlbum'];
-            $newDisco->inserir();
+            $newDisco->age = $_POST['inputAge'];
+            $newDisco->insert();
         }
         header('Location:index.php');
     }
@@ -65,6 +66,10 @@ $lista = $disco->listar();
                                             <label for="inputName">Name</label>
                                             <input type="text" class="form-control" name="inputName" placeholder="Name">
                                         </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputAge">age</label>
+                                            <input type="number" class="form-control" name="inputAge" placeholder="Age">
+                                        </div>
                                         <div class="form-group col-md-8">
                                             <label for="inputAlbum">Álbum</label>
                                             <input type="text" class="form-control" name="inputAlbum" placeholder="Álbum">
@@ -84,17 +89,28 @@ $lista = $disco->listar();
 
                 <div class="row">
                     <?php foreach ($lista as $disco) : ?>
+                        <!-- Card -->
                         <div class="col-md-4">
                             <div class="card mb-4 " style="width: 18rem;">
-                                <img src="<?php echo $disco['img']?>" class="card-img-top" alt="..." height="200">
+                                <img src="<?php echo $disco['img'] ?>" class="card-img-top" alt="..." height="200">
+
                                 <div class="card-body">
-                                    <p align="justify" style="font-size: small"> <strong><?php echo $disco['artista']?></strong> <br>
-                                        Álbum: <?php echo $disco['album']?><br>
+                                    <p align="justify" style="font-size: small"> <strong><?php echo $disco['artista'] ?></strong> <br>
+                                        Álbum: <?php echo $disco['album'] ?><br>
+                                    </p>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="deleteDisc.php?id=<?php echo $disco['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a href="updateDisc.php?id=<?php echo $disco['id'] ?>" class="btn btn-sm btn-outline-secondary"> Edit</a>
+                                        </div>
+                                        <small class="text-muted">Age <?php echo $disco['age'] ?></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- End Card -->
                     <?php endforeach ?>
-
                 </div>
                 <!--end row-->
             </div>
