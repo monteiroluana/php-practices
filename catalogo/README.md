@@ -4,7 +4,7 @@ This project aims to practice basic programming concepts in PHP and serve as a s
 
 ## Practices
 - [x] POO: classes, methodes and attributes
-- [x] Data Persistence
+- [x] Data Persistence with PDO
 - [x] External API
 
 ## API's
