@@ -4,11 +4,6 @@ require_once 'class/Disco.php';
 
 $disco = new Disco();
 $lista = $disco->selectAll();
-
-// echo "<pre>";
-// print_r($lista);
-// echo "</pre>";
-
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +14,9 @@ $lista = $disco->selectAll();
     <title>Home</title>
     <!-- local -->
     <!-- <link rel="stylesheet" href="css/home.css"> -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -98,19 +96,25 @@ $lista = $disco->selectAll();
                                     <p align="justify" style="font-size: small"> <strong><?php echo $disco['artista'] ?></strong> <br>
                                         Álbum: <?php echo $disco['album'] ?><br>
                                     </p>
-
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="deleteDisc.php?id=<?php echo $disco['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
                                             <a href="updateDisc.php?id=<?php echo $disco['id'] ?>" class="btn btn-sm btn-outline-secondary"> Edit</a>
                                         </div>
-                                        <small class="text-muted">Age <?php echo $disco['age'] ?></small>
+                                        <!-- <small class="text-muted">Age <?php echo $disco['age'] ?></small> -->
+
+                                        <a class="btn song" style="font-size: 1.5em; color: #6c757d;" id="<?php echo $disco['id'] ?>" onclick="song(<?php echo $disco['id'] ?>, '<?php echo $disco['youtube_id'] ?>')">
+                                            <i class="far fa-play-circle"></i>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- End Card -->
                     <?php endforeach ?>
+
+                    <div id="player" style="display:none;"></div>
                 </div>
                 <!--end row-->
             </div>
@@ -118,6 +122,55 @@ $lista = $disco->selectAll();
     </div>
 
     <?php include_once 'footer.php'; ?>
+
+    <!-- This code loads the iFrame Player API code asynchronously.-->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        'use strict'
+
+        var play = false;
+
+        function song(elId, elYoutubeId) {
+            if (play == false) {
+                play = true;
+                player.loadVideoById(elYoutubeId);
+                player.playVideo();
+                document.getElementById(elId).innerHTML = '<i class="far fa-pause-circle"></i>';
+                document.getElementById(elId).style.color = "Tomato";
+            } else {
+                showDefaultBtn();
+            }
+        }
+
+        function showDefaultBtn() {
+            play = false;
+            player.stopVideo();
+            $(".song").css("color", "#6c757d");
+            $(".song").html('<i class="far fa-play-circle"></i>');
+        }
+
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: '',
+            });
+        }
+    </script>
+
 </body>
 
 </html>

@@ -9,6 +9,7 @@ class Disco
     public $artista;
     public $img;
     public $age;
+    public $youtube_id;
 
     // // método construtor
     // public function __construct($album, $artista, $img){
@@ -19,7 +20,7 @@ class Disco
 
     public function selectAll()
     {
-        $sql = "select id, album, artista, img, age from catalogo.disco order by artista";
+        $sql = "select id, album, artista, img, age, youtube_id from catalogo.disco order by artista";
         $conn = Connection::getConnection();
         $resultado = $conn->query($sql);
         $lista = $resultado->fetchAll();
@@ -28,21 +29,21 @@ class Disco
 
     public function insert()
     {
-        $sql = "INSERT INTO catalogo.disco (album, artista, img, age) VALUES('" . $this->album . "', '" . $this->artista . "', '" . $this->img . "', '" . $this->age . "');";
+        $sql = "INSERT INTO catalogo.disco (album, artista, img, age, yuotube_id) VALUES('" . $this->album . "', '" . $this->artista . "', '" . $this->img . "', '" . $this->age . "', '" . $this->youtube_id . "');";
         $conn = Connection::getConnection();
         $conn->exec($sql);
     }
 
     public function update()
     {
-        $sql = "UPDATE catalogo.disco SET album = '" . $this->album . "', artista = '" . $this->artista . "', img = '" . $this->img . "', age = '" . $this->age . "' WHERE id = " . $this->id;
+        $sql = "UPDATE catalogo.disco SET album = '" . $this->album . "', artista = '" . $this->artista . "', img = '" . $this->img . "', age = '" . $this->age . "' , youtube_id = '" . $this->youtube_id . "' WHERE id = " . $this->id;
         $conn = Connection::getConnection();
         $conn->exec($sql);
     }
 
     public function getDisco()
     {
-        $query = "SELECT id, album, artista, img, age FROM catalogo.disco WHERE id = " . $this->id;
+        $query = "SELECT id, album, artista, img, age, youtube_id FROM catalogo.disco WHERE id = " . $this->id;
         $conn = Connection::getConnection();
         $resultado = $conn->query($query);
         $lista = $resultado->fetchAll();
